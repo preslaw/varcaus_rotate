@@ -1,0 +1,51 @@
+import pygame
+
+timer = pygame.time.Clock()
+
+BACKGROUND = (100,10,10)
+YELLOW = (0,0,0)
+RED = (0,115,115)
+pygame.init()
+HEIGHT =400
+WIDTH=400
+
+ekran = pygame.display.set_mode((WIDTH,HEIGHT))
+
+z = pygame.font.get_fonts()
+
+font = pygame.font.SysFont("bitstreamverasansmono",128)
+
+fontSize = 48
+fontChange = 1
+rotate = 0
+
+
+while True:
+  ekran.fill(BACKGROUND)  
+  font = pygame.font.SysFont("bitstreamverasansmono",fontSize)
+  varcaus  = font.render('VARCAUS', True,RED)
+  varcaus= pygame.transform.rotate(varcaus, rotate)
+  varcaus_prost = varcaus.get_rect()
+  varcaus_prost.center = (WIDTH / 2, HEIGHT / 2)
+  ekran.blit(varcaus,varcaus_prost)
+  
+  if fontSize <32 or fontSize>64 :
+    fontChange = -fontChange
+    
+  fontSize += fontChange
+  
+  for event in pygame.event.get() : 
+    if event.type == pygame.QUIT : 
+      pygame.quit() 
+      
+  pygame.display.update() 
+  rotate +=1
+  
+  timer.tick(30)
+
+pygame.quit()
+    
+  
+    
+    
+
